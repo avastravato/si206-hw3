@@ -79,7 +79,7 @@ class CootieCatcher():
                 return "I've already answered that question"
         self.questions_history_list.append(question)
         fav_color = input("Please enter your favorite color :) ")
-        if(len(fav_color) % 2 != 0):
+        if(len(fav_color) % 2 == 0):
             chosen_list = self.num1_list
         else: chosen_list = self.num2_list
         chosen_num = input("Pick a number - " + str(chosen_list[0]) + str(chosen_list[1]) + str(chosen_list[2]) + str(chosen_list[3]) + ": ")
