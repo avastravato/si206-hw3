@@ -99,18 +99,22 @@ class CootieCatcher():
             print("None yet")
         else: 
             for i in range (len(self.questions_history_list)):
+                number = i + 1
+                question = str(self.questions_history_list[i])
+                answer = str(self.answers_history_list[i])
+                print(number + question + " - " + answer + "")
                 
-
-                    
 def main():
 
     # define the list of 8 possible answers
-
+    possible_answers = ["Definitely", "Most likely", "It is certain", "Maybe", "Cannot predict now", 
+                        "Very Doubtful", "Don't count on it", "Absolutely not"]
     # define the first list of numbers from 0 - 7 inclusive 
+    list1 = [0, 2, 4, 6]
     # define the second list of numbers from 0 - 7 inclusive that were not in the first list
-
+    list2 = [1, 3, 5, 7]
     # create the CootieCatcher object
-
+    mycatcher = CootieCatcher()
     # Get the first question or "quit"
 
     # Loop while question is not "quit"
@@ -118,7 +122,6 @@ def main():
     # show the output of print_question_history 
 
     # remove pass when you write code above
-    pass
 
 
 # Only run the main function if this file is being run (not imported)
