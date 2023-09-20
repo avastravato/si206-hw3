@@ -56,8 +56,8 @@ class CootieCatcher():
     # if pick is in nums, it adds pick to the answers_history_list and returns the answer at that index from answers_list.
     def get_fortune(self, nums, pick):
         if pick not in nums:
-            print("That number is not one you can choose! Please try again.")
-            return None
+            new_num = input("That number is not one you can choose! Please try again. ")
+            return self.get_fortune(nums, new_num)
         self.answers_history_list.append(pick) # ?
         return self.answers_list[pick]
 
@@ -78,11 +78,11 @@ class CootieCatcher():
             if question == self.questions_history_list[i]:
                 return "I've already answered that question"
         self.questions_history_list.append(question)
-        fav_color = input("Please enter your favorite color :)")
-        if(len(fav_color) % 2 == 0):
+        fav_color = input("Please enter your favorite color :) ")
+        if(len(fav_color) % 2 != 0):
             chosen_list = self.num1_list
         else: chosen_list = self.num2_list
-        chosen_num = input("Pick a number - " + chosen_list[0] + chosen_list[1] + chosen_list[2] + chosen_list[3] + ": ")
+        chosen_num = input("Pick a number - " + str(chosen_list[0]) + str(chosen_list[1]) + str(chosen_list[2]) + str(chosen_list[3]) + ": ")
         fortune = self.get_fortune(chosen_list,chosen_num)
         return fortune
         
@@ -114,12 +114,12 @@ def main():
     # define the second list of numbers from 0 - 7 inclusive that were not in the first list
     list2 = [1, 3, 5, 7]
     # create the CootieCatcher object
-    mycatcher = CootieCatcher()
+    mycatcher = CootieCatcher(possible_answers,list1,list2)
     # Get the first question or "quit"
-    first_q = input("Ask a question or type quit:")
+    first_q = input("Ask a question or type quit: ")
     # Loop while question is not "quit"
     while(first_q != "quit"):
-        mycatcher.ask(mycatcher,first_q)
+        mycatcher.ask(first_q)
     # show the output of print_question_history 
     mycatcher.print_question_history(mycatcher)
     # remove pass when you write code above
