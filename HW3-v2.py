@@ -116,13 +116,13 @@ def main():
     # create the CootieCatcher object
     mycatcher = CootieCatcher()
     # Get the first question or "quit"
-
+    first_q = input("Ask a question or type quit:")
     # Loop while question is not "quit"
-
+    while(first_q != "quit"):
+        mycatcher.ask(mycatcher,first_q)
     # show the output of print_question_history 
-
+    mycatcher.print_question_history(mycatcher)
     # remove pass when you write code above
-
 
 # Only run the main function if this file is being run (not imported)
 if __name__ == "__main__":
