@@ -1,5 +1,5 @@
 # Your name: Ava Stravato
-# Your student id: 22951813 (astravat)
+# Your student id: 22951813
 # Your email: astravat@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT):
 # If you worked with generative AI also add a statement for how you used it.  
@@ -57,7 +57,7 @@ class CootieCatcher():
     def get_fortune(self, nums, pick):
         if int(pick) in nums:
             self.answers_history_list.append(self.answers_list[int(pick)])
-            return self.answers_list[int(pick)]
+            print(str(self.answers_list[int(pick)]))
         else:
             new_num = input("That number is not one you can choose! Please try again. ")
             return self.get_fortune(nums, new_num)
@@ -76,7 +76,8 @@ class CootieCatcher():
     #   Returns the answer from the get_fortune method.
     def ask(self, question):
         if question in self.questions_history_list:
-            return "I've already answered that question"
+            print("I've already answered that question")
+            return
         self.questions_history_list.append(question)
         fav_color = input("Please enter your favorite color :) ")
         if(len(fav_color) % 2 == 0):
@@ -84,10 +85,8 @@ class CootieCatcher():
         else: 
             chosen_list = self.num2_list
         chosen_num = input("Pick a number - [" + str(chosen_list[0]) + ", " + str(chosen_list[1]) + ", " + str(chosen_list[2]) + ", " + str(chosen_list[3]) + "]: ")
-        fortune = self.get_fortune(chosen_list,int(chosen_num))
-        return fortune
+        self.get_fortune(chosen_list,int(chosen_num))
         
-
     # Create the print_question_history method
     # Argument: self (the curent object)
     # Return: None
@@ -120,7 +119,8 @@ def main():
     first_q = input("Ask a question or type quit: ")
     # Loop while question is not "quit"
     while(first_q != "quit"):
-        first_q = mycatcher.ask(first_q)
+        mycatcher.ask(first_q)
+        first_q = input("Ask a question or type quit: ")
     # show the output of print_question_history 
     mycatcher.print_question_history()
     # remove pass when you write code above
