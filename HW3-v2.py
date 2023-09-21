@@ -55,11 +55,12 @@ class CootieCatcher():
     # and asks for another number.
     # if pick is in nums, it adds pick to the answers_history_list and returns the answer at that index from answers_list.
     def get_fortune(self, nums, pick):
-        if pick not in nums:
+        if int(pick) in nums:
+            self.answers_history_list.append(self.answers_list[int(pick)])
+            return self.answers_list[int(pick)]
+        else:
             new_num = input("That number is not one you can choose! Please try again. ")
             return self.get_fortune(nums, new_num)
-        self.answers_history_list.append(pick) # ?
-        return self.answers_list[pick]
 
     # Create the ask method 
     # Arguments: self (the curent object)
@@ -74,16 +75,16 @@ class CootieCatcher():
     #   Prompts the user to “Pick a number - <numbers from appropriate list here>: “ 
     #   Returns the answer from the get_fortune method.
     def ask(self, question):
-        for i in range(len(self.questions_history_list)):
-            if question == self.questions_history_list[i]:
-                return "I've already answered that question"
+        if question in self.questions_history_list:
+            return "I've already answered that question"
         self.questions_history_list.append(question)
         fav_color = input("Please enter your favorite color :) ")
         if(len(fav_color) % 2 == 0):
             chosen_list = self.num1_list
-        else: chosen_list = self.num2_list
-        chosen_num = input("Pick a number - " + str(chosen_list[0]) + str(chosen_list[1]) + str(chosen_list[2]) + str(chosen_list[3]) + ": ")
-        fortune = self.get_fortune(chosen_list,chosen_num)
+        else: 
+            chosen_list = self.num2_list
+        chosen_num = input("Pick a number - [" + str(chosen_list[0]) + ", " + str(chosen_list[1]) + ", " + str(chosen_list[2]) + ", " + str(chosen_list[3]) + "]: ")
+        fortune = self.get_fortune(chosen_list,int(chosen_num))
         return fortune
         
 
@@ -99,10 +100,10 @@ class CootieCatcher():
             print("None yet")
         else: 
             for i in range (len(self.questions_history_list)):
-                number = i + 1
+                number = str(i + 1)
                 question = str(self.questions_history_list[i])
                 answer = str(self.answers_history_list[i])
-                print(number + question + " - " + answer + "")
+                print(number + " " + question + " - " + answer + "")
                 
 def main():
 
@@ -119,9 +120,9 @@ def main():
     first_q = input("Ask a question or type quit: ")
     # Loop while question is not "quit"
     while(first_q != "quit"):
-        mycatcher.ask(first_q)
+        first_q = mycatcher.ask(first_q)
     # show the output of print_question_history 
-    mycatcher.print_question_history(mycatcher)
+    mycatcher.print_question_history()
     # remove pass when you write code above
 
 # Only run the main function if this file is being run (not imported)
